@@ -63,12 +63,13 @@ L'application s'ouvre sur http://localhost:8501.
 1. Pousser le repo sur GitHub.
 2. Sur [share.streamlit.io](https://share.streamlit.io), créer une app pointant vers
    `webapp/app.py`.
-3. Renseigner `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD` dans les *Secrets* de l'app
-   (nécessite une instance Redis accessible publiquement, ex. Redis Cloud — voir README
-   principal, section mise en prod).
+3. Renseigner `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD` dans les *Secrets* de l'app — la base
+   Redis Cloud du projet est déjà prête (voir README principal, section "Mise en production").
 
 ## Limites connues
 
+- La base Redis Cloud (offre gratuite) contient un **échantillon de 11 000 annonces** et non les
+  101 760 complètes, faute de mémoire disponible — voir README principal pour le détail.
 - La carte (`st.map`) affiche au plus 500 points pour rester réactive ; le compteur de résultats,
   lui, reflète le total réel.
 - Pas d'authentification : en l'état, l'app est en lecture seule sur les données (aucune

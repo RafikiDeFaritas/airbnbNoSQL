@@ -9,8 +9,11 @@ from datetime import datetime, timezone
 
 import pandas as pd
 import redis
+from dotenv import load_dotenv
 from redis.commands.search.field import GeoField, NumericField, TagField, TextField
 from redis.commands.search.index_definition import IndexDefinition, IndexType
+
+load_dotenv()
 
 INDEX_NAME = "idx:listings"
 KEY_PREFIX = "listing:"

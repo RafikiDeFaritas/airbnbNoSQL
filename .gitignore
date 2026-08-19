@@ -6,8 +6,10 @@ venv/
 .venv/
 data/*.zip
 data/Airbnb_Open_Data.csv
+data/airbnb_clean.csv
 Airbnb_Open_Data.csv.zip
 *.rdb
 *.aof
 appendonlydir/
 .streamlit/secrets.toml
+presentation/
