@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+venv/
+.venv/
+data/*.zip
+data/Airbnb_Open_Data.csv
+Airbnb_Open_Data.csv.zip
+*.rdb
+*.aof
+appendonlydir/
+.streamlit/secrets.toml
