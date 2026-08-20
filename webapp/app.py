@@ -2,6 +2,7 @@
 
 Lancer avec : streamlit run webapp/app.py
 """
+import json
 import sys
 from pathlib import Path
 
@@ -69,22 +70,26 @@ else:
         f"(@room_type:{{{room_filter}}}) "
         f"(@price:[{price_min} {price_max}])"
     )
-    query = Query(query_str).paging(0, 500).return_fields("id", "name", "neighbourhood", "price", "lat", "long")
+    query = Query(query_str).paging(0, 500)
     results = r.ft(INDEX_NAME).search(query)
 
     st.subheader(f"Résultats du filtre : {results.total} annonces (aperçu des 500 premières)")
 
-    rows = [
-        {
-            "id": doc.id.replace("listing:", ""),
-            "name": getattr(doc, "name", ""),
-            "neighbourhood": getattr(doc, "neighbourhood", ""),
-            "price": float(getattr(doc, "price", 0)),
-            "lat": float(getattr(doc, "lat", 0)),
-            "long": float(getattr(doc, "long", 0)),
-        }
-        for doc in results.docs
-    ]
+    # `lat`/`long` ne sont pas des champs indexés séparément (seul `geo` l'est) : RediSearch ne les
+    # renverrait pas via return_fields. On récupère donc le document JSON complet pour chaque résultat.
+    rows = []
+    for doc in results.docs:
+        data = json.loads(doc.json)
+        rows.append(
+            {
+                "id": doc.id.replace("listing:", ""),
+                "name": data.get("name", ""),
+                "neighbourhood": data.get("neighbourhood", ""),
+                "price": float(data.get("price", 0)),
+                "lat": float(data.get("lat", 0)),
+                "long": float(data.get("long", 0)),
+            }
+        )
     filtered_df = pd.DataFrame(rows)
 
 col_map, col_table = st.columns([2, 1])
