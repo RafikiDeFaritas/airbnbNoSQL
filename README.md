@@ -2,6 +2,8 @@
 
 Projet Pro final — NoSQL & Big Data.
 
+**🚀 WebApp en ligne : https://airbnbnosql-dfbvtppvosgzxtgxpwxu3c.streamlit.app/**
+
 ## Contexte
 
 Analyse du dataset [Airbnb Open Data (NYC)](https://www.kaggle.com/datasets/arianazmoudeh/airbnbopendata)
@@ -19,8 +21,8 @@ avec un rapport analytique et une WebApp de visualisation.
 
 ## Équipe & suivi des tâches
 
-- Trello : _(lien à ajouter)_
-- Membres : _(à compléter)_
+- Trello : https://trello.com/b/Kpg6iOJf/airbnb-nyc-projet-nosql
+- Membres : Romain, Raphaël
 
 ## Lien vers la présentation
 
@@ -87,6 +89,10 @@ py scripts/load_data.py --sample 11000    # Redis Cloud gratuit : échantillon (
 ```
 
 ## Lancer la WebApp
+
+Déjà en ligne, connectée à Redis Cloud : **https://airbnbnosql-dfbvtppvosgzxtgxpwxu3c.streamlit.app/**
+
+En local :
 
 ```bash
 streamlit run webapp/app.py
